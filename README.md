@@ -10,4 +10,4 @@
     Dns . . . . . . . . . . : reachable
 total points     =       6
 ```
-Change 2nd line to `SET FLAG_STAY_OPEN=1` if you wish to keep window open.
+Change 2nd line to `SET FLAG_STAY_OPEN=0` if you wish to use this script in the terminal or a batch script. (disables PAUSE)
