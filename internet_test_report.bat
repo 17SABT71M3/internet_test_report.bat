@@ -1,7 +1,6 @@
 @echo off
-REM echo \
-REM for /f "delims=" %%i in ('powershell -c "write-host -nonewline `t"') do set "tab=%%i"
-REM cls
+SET FLAG_STAY_OPEN=0
+
 echo /-----------------"%~nx0"-----------------\
 set /a points=0
 set is_connected=0
@@ -44,26 +43,4 @@ if "%dns_server%"=="" (echo:^<^!^> ERROR: DNS address is missing^!) else (echo: 
 if %internet_gateway_is_reachable%==1 (echo:    Gateway . . . . . . . . : reachable) else (echo:^<^!^> ERROR: Gateway is not reachable.)
 if "%dns_server%"=="" (if %internet_gateway_is_reachable%==1 (echo:%FLAG_INTERNET_CONNECTION_GATEWAY% is reachable.) else (echo:DNS Server is missing.&echo:^<^!^> ERROR: %FLAG_INTERNET_CONNECTION_GATEWAY% is not reachable.)) else (if %dns_is_reachable%==1 (echo:    Dns . . . . . . . . . . : reachable) else (echo:^<^!^> ERROR: Dns is not reachable.))
 echo|set/p=total points    ^ =       %points% 
-REM if %points% ==6 (call :colors black green "V")
-REM if %points% LSS 6 ( call :colors black magenta "X")
-goto :eof
-:colors
-setlocal enabledelayedexpansion
-Set Black1=[40m
-Set Red1=[41m
-Set Green1=[42m
-Set Yellow1=[43m
-Set Blue1=[44m
-Set Magenta1=[45m
-Set white1=[107m
-Set Cyan1=[46m
-Set Black=[30m
-Set Red=[31m
-Set Green=[32m
-Set Blue=[34m
-Set Yellow=[33m
-Set Magenta=[35m
-Set Cyan=[36m
-Set white=[37m
-for /f "delims=" %%i in (%3) do echo|set/p=!%~11!!%~2!%%~i[0m
-goto :eof
+if %FLAG_STAY_OPEN%==1 pause
