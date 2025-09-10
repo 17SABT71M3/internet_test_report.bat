@@ -1,3 +1,4 @@
+```
 /-----------------"internet_test_report.bat"-----------------\
     Interface is connected
     checking dhcp... Yes
@@ -8,3 +9,4 @@
     Gateway . . . . . . . . : reachable
     Dns . . . . . . . . . . : reachable
 total points     =       6
+```
