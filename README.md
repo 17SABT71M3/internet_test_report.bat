@@ -10,3 +10,4 @@
     Dns . . . . . . . . . . : reachable
 total points     =       6
 ```
+Change 2nd line to `SET FLAG_STAY_OPEN=1` if you wish to keep window open.
