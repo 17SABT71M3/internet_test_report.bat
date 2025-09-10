@@ -1,11 +1,12 @@
 @echo off
 SET FLAG_STAY_OPEN=1
+set FLAG_INTERNET_CONNECTION_GATEWAY=1.1.1.1
 
 echo /-----------------"%~nx0"-----------------\
 set /a points=0
 set is_connected=0
 set is_dhcp=
-set FLAG_INTERNET_CONNECTION_GATEWAY=1.1.1.1
+
 for /f "tokens=1,* delims=:" %%i in ('netsh wlan show interfaces ^| findstr /ir "Name.*[:] State.*[:] ssid.*[:]"') do (for /f "tokens=1 delims= " %%b in ("%%i") do if /i "%%b"=="state" for /f "tokens=* delims= " %%a in ("%%j") do if /i "%%a"=="connected" set is_connected=1&set /a points+=1)
 if %is_connected%==1 (echo:    Interface is connected) else (echo:^<^!^> Disconnected)
 for /f "tokens=*" %%i in ('netsh  interface ipv4 show addresses name^="Wi-Fi"  ^| find "DHCP enabled:"') do for /f "tokens=3 delims=: " %%a in ("%%i") do set is_dhcp=%%a&echo     checking dhcp... %%a
@@ -44,4 +45,5 @@ if %internet_gateway_is_reachable%==1 (echo:    Gateway . . . . . . . . : reacha
 if "%dns_server%"=="" (if %internet_gateway_is_reachable%==1 (echo:%FLAG_INTERNET_CONNECTION_GATEWAY% is reachable.) else (echo:DNS Server is missing.&echo:^<^!^> ERROR: %FLAG_INTERNET_CONNECTION_GATEWAY% is not reachable.)) else (if %dns_is_reachable%==1 (echo:    Dns . . . . . . . . . . : reachable) else (echo:^<^!^> ERROR: Dns is not reachable.))
 echo|set/p=total points    ^ =       %points% 
 if %FLAG_STAY_OPEN%==1 (for /l %%i in (1,1,5) do echo:) & pause >NUL
+
 
