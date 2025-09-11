@@ -43,7 +43,8 @@ if "%gateway%"=="" (echo:^<^!^> ERROR: Gateway address is empty^!) else (echo:  
 if "%dns_server%"=="" (echo:^<^!^> ERROR: DNS address is missing^!) else (echo:    Dns server: %dns_server%)
 if %internet_gateway_is_reachable%==1 (echo:    Gateway . . . . . . . . : reachable) else (echo:^<^!^> ERROR: Gateway is not reachable.)
 if "%dns_server%"=="" (if %internet_gateway_is_reachable%==1 (echo:%FLAG_INTERNET_CONNECTION_GATEWAY% is reachable.) else (echo:DNS Server is missing.&echo:^<^!^> ERROR: %FLAG_INTERNET_CONNECTION_GATEWAY% is not reachable.)) else (if %dns_is_reachable%==1 (echo:    Dns . . . . . . . . . . : reachable) else (echo:^<^!^> ERROR: Dns is not reachable.))
-echo|set/p=total points    ^ =       %points% 
+echo|set/p=POINTS           ^ =        [%points%/6]
 if %FLAG_STAY_OPEN%==1 (for /l %%i in (1,1,5) do echo:) & pause >NUL
+
 
 
