@@ -10,4 +10,4 @@
     Dns . . . . . . . . . . : reachable
 POINTS            =        [6/6]
 ```
-SET `FLAG_STAY_OPEN`=0 if you wish to use this script in the terminal or a batch script.
+SET `FLAG_STAY_OPEN`=0 if you wish to use this script in a batch script.
