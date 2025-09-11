@@ -1,3 +1,4 @@
+Simple Internet Diagnosis Script for IT Admins to reduce pain in the butt.
 ```
 /-----------------"internet_test_report.bat"-----------------\
     Interface is connected
