@@ -12,4 +12,4 @@ Simple Internet Diagnosis Script for IT Admins/Home users.
 POINTS            =        [6/6]
 ```
 > [!TIP]
-> SET `FLAG_STAY_OPEN`=0 if you wish to use this script in a batch script.
+> SET `FLAG_STAY_OPEN`=0 if you wish to call this script from a batch script.
