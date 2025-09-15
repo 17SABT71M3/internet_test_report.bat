@@ -31,7 +31,7 @@ call :check_ip_settings&call :check_gateway&call :check_internet_connection
 goto print_reports
 :check_gateway
 set gateway_is_reachable=0
-if "%gateway%" NEQ "" (ping -n 1 %GATEWAY% | find /i "ttl=" >NUL&&(set /a points+=1&set internet_gateway_is_reachable=1))
+if "%gateway%" NEQ "" (ping -n 1 %GATEWAY% | find /i "ttl=" >NUL&&(set /a points+=1&set gateway_is_reachable=1))
 exit /b
 :check_internet_connection
 if "%dns_server%" == "" (ping -n 1 %FLAG_INTERNET_CONNECTION_GATEWAY% | find /i "ttl=" >NUL&&(set /a points+=1&set internet_gateway_is_reachable=1)) else (ping -n 1 %dns_server% | find /i "ttl=" >NUL&&(set /a points+=1&set dns_is_reachable=1))
@@ -56,7 +56,7 @@ if "%ip_1%" == "" (echo:^<^^^!^> ERROR: Ip address is not set^!)
 if "%ip_1%" NEQ "" if "%ip_1%"=="169" (echo:^<^^^!^> ERROR: I.P address configuration has failed^!) else (echo:[V] IP Address is set as %ip_address%&set /a points+=1)
 if "%gateway%"=="" (echo:^<^^^!^> ERROR: Gateway address is empty^!) else (echo:[V] Gateway: %gateway%)
 if "%dns_server%"=="" (echo:^<^^^!^> ERROR: DNS address is missing^!) else (if /i "%dns_server%"=="none" ( echo:^<^^^!^> ERROR: DNS address is missing^! ) else (echo:[V] Dns server: %dns_server%))
-if %internet_gateway_is_reachable%==1 (echo:[V] Gateway . . . . . . . . : reachable) else (echo:^<^^^!^> ERROR: Gateway is not reachable.)
+if %gateway_is_reachable%==1 (echo:[V] Gateway . . . . . . . . : reachable) else (echo:^<^^^!^> ERROR: Gateway is not reachable.)
 if "%dns_server%"=="" (if %internet_gateway_is_reachable%==1 (echo:[V] %FLAG_INTERNET_CONNECTION_GATEWAY% is reachable.) else (echo:    DNS Server is missing.&echo:^<^^^!^> ERROR: %FLAG_INTERNET_CONNECTION_GATEWAY% is not reachable.)) else (if %dns_is_reachable%==1 (echo:[V] Dns . . . . . . . . . . : reachable) else (echo:^<^^^!^> ERROR: Dns is not reachable.))
 echo:POINTS           ^ =        [%points%/6]
 REM if %points% ==6 (call :colors black green "V")
